@@ -7,6 +7,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import loggedin from './pages/Home'
 
 import supabase from './api/supabase'
+import React from 'react';
 
 export default function App() {
   const [session, setSession] = useState(null)

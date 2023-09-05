@@ -19,9 +19,10 @@ export default async function loggedin() {
                 <p>current token </p>
             </div>
             <button onClick={() => {
-                fs.writeFileSync("test.txt", "Hello, world!")
+                // fs.writeFileSync("test.txt", "Hello, world!")
             }}>Force Regenerate Keys (use this when students are misusing app)</button>
-            <button onClick={await logoutfunc()}>Logout</button>
+             <button onClick={() => logoutfunc()}>Logout</button>
+           
         </div>
     )
 }
