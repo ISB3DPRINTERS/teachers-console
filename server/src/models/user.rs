@@ -9,6 +9,21 @@ use crate::util::hash::hash_password;
 #[derive(Debug, Clone, Serialize, Deserialize, Queryable, Selectable, Insertable)]
 #[diesel(table_name = crate::schema::users)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
+pub struct IdentifiedUser {
+    pub id: i32,
+    pub first_name: String,
+    pub last_name: String,
+    pub email: String,
+    pub username: String,
+    pub password: String,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub token: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Queryable, Selectable, Insertable)]
+#[diesel(table_name = crate::schema::users)]
+#[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct User {
     pub first_name: String,
     pub last_name: String,
@@ -59,6 +74,19 @@ impl From<User> for CredentiallessUser {
             last_name: value.last_name,
             email: value.email,
             username: value.username,
+        }
+    }
+}
+
+impl From<IdentifiedUser> for User {
+    fn from(value: IdentifiedUser) -> Self {
+        Self {
+            first_name: value.first_name,
+            last_name: value.last_name,
+            email: value.email,
+            username: value.username,
+            password: value.password,
+            token: value.token,
         }
     }
 }

@@ -10,6 +10,24 @@ export default function Auth() {
         event.preventDefault();
 
         setLoading(true);
+
+        const res = await fetch("/api/token", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify({
+                username,
+                password,
+            }),
+        });
+
+        const token = await res.text();
+
+        localStorage.setItem("auth-token", token);
+
         setLoading(false);
     };
 
@@ -41,7 +59,6 @@ export default function Auth() {
                         />
                     </div>
 
-                    <div>
                         <button className="submit-button" disabled={loading}>
                             {loading ? (
                                 <span>Loading</span>
@@ -49,7 +66,6 @@ export default function Auth() {
                                 <span>Sign In</span>
                             )}
                         </button>
-                    </div>
                 </form>
             </div>
     );
