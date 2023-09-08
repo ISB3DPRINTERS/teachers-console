@@ -1,0 +1,9 @@
+public
+node_modules
+*.md
+LICENSE
+pnpm-lock.yaml
+out
+dist
+build
+/server

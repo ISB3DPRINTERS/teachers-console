@@ -1,0 +1,5 @@
+.env
+data.rocksdb
+data.speedb
+data.db
+target

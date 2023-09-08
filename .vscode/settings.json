@@ -1,5 +1,3 @@
 {
-    "cSpell.words": [
-        "DPRINTERS"
-    ]
+    "rust-analyzer.showUnlinkedFileNotification": false
 }
