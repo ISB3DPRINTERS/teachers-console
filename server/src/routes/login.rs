@@ -9,7 +9,7 @@ use crate::{
         login::{login, login_token},
     },
     errors::conflict::BasicResponseError,
-    models::user::CredentiallessUser,
+    models::user::{CredentiallessUser, User},
     state::AppState,
 };
 
@@ -25,7 +25,7 @@ pub async fn auth_login(
 
     if let Ok(user) = resp {
         return Ok(Response::new(
-            serde_json::to_string(&CredentiallessUser::from(user)).unwrap(),
+            serde_json::to_string(&CredentiallessUser::from(User::from(user))).unwrap(),
         ));
     }
 
@@ -53,7 +53,7 @@ pub async fn token_login(
 
     if let Ok(user) = resp {
         return Ok(Response::new(
-            serde_json::to_string(&CredentiallessUser::from(user)).unwrap(),
+            serde_json::to_string(&CredentiallessUser::from(User::from(user))).unwrap(),
         ));
     }
 
