@@ -270,8 +270,7 @@ pub async fn run_client_node() {
         tmp.path().join("package.json"),
         r#"{
     "name": "teachers-console-client",
-    "version": "0.0.1",
-    "type": "module"
+    "version": "0.0.1"
 }"#,
     );
 
@@ -295,7 +294,7 @@ pub async fn run_client_node() {
     let modified_path = node_path + "/bin:" + &env::var("PATH").unwrap();
 
     let out = Command::new("node")
-        .arg(tmp.path().join("index.js").to_str().unwrap())
+        .arg(tmp.path().join("server.js").to_str().unwrap())
         .env("PORT", listen_port_s)
         .env("HOST", config.clone().host)
         .env("PATH", &modified_path)
@@ -348,7 +347,7 @@ pub async fn run_client_bun() {
     info!("Client listening on {}", address);
 
     let out = Command::new("bun")
-        .arg(tmp.path().join("index.js").to_str().unwrap())
+        .arg(tmp.path().join("server.js").to_str().unwrap())
         .env("PORT", listen_port_s)
         .env("HOST", config.clone().host)
         .env("PATH", &modified_path)

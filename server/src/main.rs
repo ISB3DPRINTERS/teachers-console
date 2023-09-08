@@ -40,7 +40,7 @@ use log::warn;
 
 #[cfg(not(debug_assertions))]
 async fn _run_client() {
-    info("Starting client...");
+    info!("Starting client...");
 
     tokio::spawn(async {
         run_client_node().await;
@@ -99,6 +99,8 @@ pub async fn main() -> Result<(), Box<dyn Error>> {
 
     let service = router.into_make_service_with_connect_info::<SocketAddr>();
     let app = server.serve(service);
+
+    _run_client().await;
 
     info!("Listening on {}", address);
 
