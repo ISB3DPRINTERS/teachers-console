@@ -14,7 +14,7 @@ echo "Exiting"
 exit
 fi
 echo "Installing Build deps"
-sudo apt install libpq-dev libz2-dev libcland-15-dev zliblg-dev liblz4-dev libzstd-dev libssl-dev openssl pkg-config
+sudo apt install libpq-dev libz2-dev libcland-15-dev zliblg-dev liblz4-dev libzstd-dev libssl-dev openssl pkg-config libsqlite3-dev
 wait
 echo "Checing pnpm is installed"
 npm install pnpm -g
