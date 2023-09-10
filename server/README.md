@@ -13,9 +13,10 @@ This requires, for compilation only (via apt):
 - `libssl-dev`
 - `openssl`
 - `pkg-config`
+- `libsqlite3-dev`
 
 For Ubuntu/Debian run:  
-``sudo apt install libpq-dev libz2-dev libcland-15-dev zliblg-dev liblz4-dev libzstd-dev libssl-dev openssl pkg-config``
+``sudo apt install libpq-dev libz2-dev libcland-15-dev zliblg-dev liblz4-dev libzstd-dev libssl-dev openssl pkg-config libsqlite3-dev``
 ## Compilation
 
 To compile, just run one of these commands:
