@@ -11,7 +11,11 @@ This requires, for compilation only (via apt):
 - `liblz4-dev`
 - `libzstd-dev`
 - `libssl-dev`
+- `openssl`
+- `pkg-config`
 
+For Ubuntu/Debian run:  
+``sudo apt install libpq-dev libz2-dev libcland-15-dev zliblg-dev liblz4-dev libzstd-dev libssl-dev openssl pkg-config``
 ## Compilation
 
 To compile, just run one of these commands:
