@@ -8,6 +8,3 @@ All you need for deployment is the binary found in `target/release/teachers-cons
 You can then upload that to whatever server you want.
 Make sure you have postgres configured and set up on that server.
 
-
-## Install/Build Script
-``curl --fsSL https://raw.githubusercontent.com/ISB3DPRINTERS/teachers-console/master/docs/installer.sh | bash``
