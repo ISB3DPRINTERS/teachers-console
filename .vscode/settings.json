@@ -1,6 +1,9 @@
 {
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "DPRINTERS"
+        "DPRINTERS",
+        "getcost",
+        "getinfo",
+        "getkey"
     ]
 }
