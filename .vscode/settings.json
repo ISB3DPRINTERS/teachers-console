@@ -1,9 +1,12 @@
 {
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
+        "buttonfuncs",
         "DPRINTERS",
         "getcost",
         "getinfo",
-        "getkey"
+        "getkey",
+        "resethandler",
+        "resetpasskeys"
     ]
 }

@@ -1,18 +1,25 @@
 import { FC } from "react";
-import getinfo from "../getinfo"
+import * as React from 'react'
+import getinfo from "../api/getinfo"
+import { resethandler } from "../api/buttonfuncs";
+
 export const Account: FC<{ token: string }> = () => {
+
+    function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formElements = form.elements as typeof form.elements & {
+            gradeInput: { value: number };
+        };
+        resethandler(formElements.gradeInput.value);
+    }
+
     return (
         <div>
             <h1>Teachers' Console</h1>
             <br></br>
-            <p>Welcome to the ISB3DPRINTERS teachers' console, from here you can find many administrator tools and commands</p>
-            <br></br>
-            <strong>Never give students access to this page</strong>
-            <br></br>
-            <button>Reset Passkeys</button>
-            <br></br>
+            <strong>WARNING: Never give students access to this page</strong>
             <h3>Info Table</h3>
-            <br></br>
             <table>
                 <tr>
                     <th>Grade</th>
@@ -56,8 +63,14 @@ export const Account: FC<{ token: string }> = () => {
                 </tr>
             </table>
             <br></br>
-            <button>Reset Keys</button>
-            <p>Only use if keys are compromised/students are misusing access</p>
+            <br></br>
+            <form onSubmit={handleSubmit}>
+                <div>
+                <label htmlFor="gradeInput">Grade:</label>
+                <input id="gradeInput" type="number" />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     );
 }
