@@ -4,7 +4,6 @@ import getinfo from "../api/getinfo"
 import { resethandler } from "../api/buttonfuncs";
 
 export const Account: FC<{ token: string }> = () => {
-
     function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget;
@@ -64,6 +63,7 @@ export const Account: FC<{ token: string }> = () => {
             </table>
             <br></br>
             <br></br>
+            <h2>Reset PassKeys</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                 <label htmlFor="gradeInput">Grade:</label>
