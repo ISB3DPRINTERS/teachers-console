@@ -1,17 +1,37 @@
 import { FC } from "react";
 import * as React from 'react'
 import getinfo from "../api/getinfo"
-import { resethandler } from "../api/buttonfuncs";
+import { useState } from "react";
 
 export const Account: FC<{ token: string }> = () => {
-    function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+    const [loading, setLoading] = useState(false);
+    const [initials, setInitials] = useState("");
+    const [grade, setGrade] = useState("");
+
+    const handleLogin = async (event: Event) => {
         event.preventDefault();
-        const form = event.currentTarget;
-        const formElements = form.elements as typeof form.elements & {
-            gradeInput: { value: number };
-        };
-        resethandler(formElements.gradeInput.value);
-    }
+
+        setLoading(true);
+
+        const res = await fetch("/api/resetpass", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify({
+                initials,
+                grade,
+            }),
+        });
+
+        const token = await res.text();
+
+        localStorage.setItem("auth-token", token);
+
+        setLoading(false);
+    };
 
     return (
         <div>
@@ -64,13 +84,36 @@ export const Account: FC<{ token: string }> = () => {
             <br></br>
             <br></br>
             <h2>Reset PassKeys</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                <label htmlFor="gradeInput">Grade:</label>
-                <input id="gradeInput" type="number" />
-                </div>
-                <button type="submit">Submit</button>
-            </form>
+            <div className="auth-form-container">
+                <form className="form-widget" onSubmit={handleLogin as any}>
+                    <div className="form-group">
+                        <input
+                            className="inputField"
+                            type="text"
+                            placeholder="Your Initials"
+                            value={initials}
+                            required={true}
+                            onChange={(e) => setInitials(e.target.value)}
+                        />
+                        <input
+                            className="inputField"
+                            type="grade"
+                            placeholder="Grade: Only # or ALL"
+                            value={grade}
+                            required={true}
+                            onChange={(e) => setGrade(e.target.value)}
+                        />
+                    </div>
+
+                        <button className="submit-button" disabled={loading}>
+                            {loading ? (
+                                <span>Loading</span>
+                            ) : (
+                                <span>Sign In</span>
+                            )}
+                        </button>
+                </form>
+            </div>
         </div>
     );
 }
